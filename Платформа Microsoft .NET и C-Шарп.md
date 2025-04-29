@@ -165,15 +165,39 @@ var employeeDepartments = departments.Join(
     (d, e) => new { DepartmentName = d.Name, EmployeeName = e.Name });
 ```
 
+```
+Concat --> объединение без удаление дубликатов
+// **Пример**
+int[] nums3 = { 1, 2, 4, 5, 7, 8 };
+int[] nums5 = { 5, 2, 5, 7, 98 };
 
+var nums56 = nums3.Concat(nums5);
+```
 
+```
+Distinct --> Удаление дубликатов
+// **Пример**
+var nums57 = nums3.Distinct();
+```
 
+```
+Union --> объединение с удалением дубликатов
+// **Пример**
+var nums58 = nums3.Union(nums5);
+```
 
+```
+Intersect --> Пересечение коллекций (Элементы, которые встречаются во всех коллекциях (в двух))
+// **Пример**
+var nums77 = nums3.Intersect(nums5);
+```
 
-
-
-
-
+```
+Except --> разность коллекций (то есть где есть в первой, но нету во второй)
+// **Пример**
+var num101 = nums3.Except(nums5);
+var num102 = nums5.Except(nums3);
+```
 
 
 
