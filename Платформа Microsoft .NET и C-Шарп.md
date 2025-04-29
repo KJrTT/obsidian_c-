@@ -52,28 +52,118 @@ JIT - компиляция --> Just in time. Сначала программа �
 
 ![[Pasted image 20250422130341.png]]
 
+##### LINQ
 
+LINQ --> инструмент, который упрощает работу с коллекциями и данными, предоставляя SQL-подобный синтаксис для запросов к объектам.
 
+Есть синтаксис методов и запросов
 
+Лямда-выражение --> представляет собой подобие функцию (параметр, который передаётся в функцию) и выражение (методы, которые делаются там)
+**Например**: 
+	a => a > 5;
+	a => a*2;
 
+```
+// Синтаксис методов
+int[] nums = { 1, 2, 3, 4, 5 ,10,5}; 
+// Какой-то массив данных
+var evenNums = nums.Where(n => n % 2 == 0); 
+// evenNums --> Новый массив, n --> лямбда 
+```
 
+```
+// Синтаксис запросов
+var evenNums2 = from n in nums
+                where n % 2 == 0
+                select n;
+// Вывод через любой цикл (for, while, foreach)
+```
 
+```
+// OrderBy --> сортирует элементы по возрастанию
+// OrderByDescending --> сортирует элементы по убыванию
+// ThenBy --> применяется после OrderBy для дополнительной сортировки по возрастанию
+ // ThenByDescending --> аналогично ThenBy, но сортирует по убыванию
+```
 
+```
+string[] names = { "Aba", "adwa", "hnasd", "dawbhe" };
 
+var sortedNames = names.OrderBy(n => n.Length); 
+// OrderBy --> Сортировка имён по длине имени
+var sored_Names2 = names.OrderByDescending(n => n.Length); 
+// OrderByDescending --> Сортировка имёт по длине имени + убывание
+```
 
+```
+// Через синтаксиса запроса
+var sortedNames3 = from n in names orderby n.Length select n;
+```
 
+```
+select --> используется для преобразования (проекции) элементов коллекции
+...
+var sq = nums.Select(n => n*n);
+```
 
+```
+Count() --> Вернёт кол-во элементов в массиве
+Sum() --> Вернут сумму элементов в массиве
+Min() --> Вернёт минимальный элемент в массиве
+Max() --> Вернёт максимальное элемент в массиве
+Average() --> Вернёт среднее значение в массиве
+// Пример
 
+int count = nums.Count();
 
+var res = nums.Where(n => n % 2 == 1)
+              .OrderByDescending(n => n)
+              .Select(n=> n * n);
+```
 
+```
+GroupBy --> Группирует элементы коллекции по заданному ключу
+// Пример
+    var people = new List<Person>
+    {
+        new Person ("Tom", 30),
+        new Person("Lol", 30),
+        new Person("Alice", 42),
+        new Person("Bob", 26),
+        new Person("gAbe", 14)
+	};
+    var groupedPeople = people.GroupBy(n => n.Age);
+// Перебор 
+foreach (var group in groupedPeople){
+	Console.WhriteLine($"Возраст {group.Key}");
+	foreach (var person in group){
+		Console.WhiteLine(person.Name)
+	}
+}
+```
+```
+Join --> слиение / объединение
+//**Пример**
+var departments = new List<Department>
+{
+    new Department(1,"Hr"),
+    new Department(2,"It")
+};
 
+var employees = new List<Employee>
+{
+    new Employee("Alice", 1),
+    new Employee("Bob", 1),
+    new Employee("jonh", 1)
 
+};
 
-
-
-
-
-
+var employeeDepartments = departments.Join(
+    employees,
+    d => d.Id,
+    e => e.DepartamentId,
+    (d, e) => new { DepartmentName = d.Name, EmployeeName = e.Name });
+```
 
 
 
