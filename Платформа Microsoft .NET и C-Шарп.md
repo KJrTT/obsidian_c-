@@ -215,9 +215,45 @@ var n4 = num3.TakeWhile(n => n < 3) // 1,2
 var n5 = num3.SkipWhile(n => n < 3) // 4,5,6,7
 ```
 
+##### XML
 
+```
+Load --> загрузка данных из файла
+Пример:
+Xdocument documnent = Xdocument.Load(Путь);
+Save --> сокранение в файл
+document.Save(Путь);
+```
 
+```
+Методы для поиска
+Descendats --> Находит все элементы с тем именем, который мы указали
+Пример: 
+var names = document.Descendats("Name")
+foreach(var item in names){
+	Console.White(item.Value);
+}
+Elements --> Ищет все элементы, но делает это только на 1 уровне 
+var contacts = document.Element("Contacts").Elements("Contacts")
+foreach(var item in document){
+	Console.White(item.Value);
+}
+Element --> Ищет только 1 элемент и также на 1 уровне
+var firstContact = document = document.Element("Contacts").Element("Contact")
+foreach(var contact in document){
+	Console.White(contact.Element("Name"));
+}
+```
 
+![[Pasted image 20250430095934.png]]
 
+![[Pasted image 20250430100053.png]]
 
+Добавление элемента
+![[Pasted image 20250430100257.png]]
 
+![[Pasted image 20250430100414.png]]
+
+![[Pasted image 20250430100604.png]]
+
+![[Pasted image 20250430100919.png]]
